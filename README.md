@@ -4,9 +4,9 @@
 Стэк: Spring, hibernate/jpa, postgreSQL, liquibase, junit для модульных тестов, openapi для документирования
 
 Точка: localhost:8080/api
-- POST: /clients/add принимает clientName(string) 
-- POST: /clients/add-debt-to-client принимает clientId(UUID) & debt(BigDecimal)
-- POST: /clients/pay-to-client-debt принимает debtId(UUID) & pay(BigDecimal)
+- POST: /clients/add принимает clientName(string) - добавляет клиента.
+- POST: /clients/add-debt-to-client принимает clientId(UUID) & debt(BigDecimal) - дает клиенту в долг
+- POST: /clients/pay-to-client-debt принимает debtId(UUID) & pay(BigDecimal) - оплачивает долг клиента
 - GET: /clients/show-all - выгружает всех клиентов
 
 Точки доступны через openapi: localhost:8080/swagger-ui/index.html#/
