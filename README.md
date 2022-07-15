@@ -8,7 +8,8 @@
 - POST: /clients/add-debt-to-client принимает clientId(UUID) & debt(BigDecimal)
 - POST: /clients/pay-to-client-debt принимает debtId(UUID) & pay(BigDecimal)
 - GET: /clients/show-all - выгружает всех клиентов
-![Screenshot 2022-07-15 at 18 39 40](https://user-images.githubusercontent.com/95632773/179226104-fb22a1fe-a2ea-4548-a4ed-63fb8cafdd1c.png)
 
+Точки доступны через openapi: localhost:8080/swagger-ui/index.html#/
+![Screenshot 2022-07-15 at 18 39 40](https://user-images.githubusercontent.com/95632773/179226104-fb22a1fe-a2ea-4548-a4ed-63fb8cafdd1c.png)
 
 
