@@ -68,9 +68,8 @@ public class ClientServiceImpl implements ClientService {
         return debt;
     }
 
-    @Override
     @Transactional
-    public Payment addPayToClientDebt(UUID debtId, BigDecimal value) {
+    public Payment addPaymentToDebt(UUID debtId, BigDecimal value) {
         Debt debt = debtRepository.findById(debtId).orElseThrow(() ->
                 new DataRetrievalFailureException("Debt with id:" + debtId + " not found"));
         BigDecimal factPayments = debt.getPayments().stream()

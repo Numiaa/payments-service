@@ -11,8 +11,6 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "payments")
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(exclude = {"debt"})
 public class Payment {
 

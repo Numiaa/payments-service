@@ -11,5 +11,4 @@ class PaymentsServiceApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

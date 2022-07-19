@@ -15,8 +15,6 @@ import java.util.*;
 @Entity
 @Table(name = "debts")
 @EqualsAndHashCode(exclude = {"client", "payments"})
-@AllArgsConstructor
-@NoArgsConstructor
 public class Debt {
 
     @Id

@@ -9,18 +9,16 @@ import ru.ivanov.paymentsservice.dto.PaymentDTO;
 import ru.ivanov.paymentsservice.dto.mapper.MapStructMapper;
 import ru.ivanov.paymentsservice.service.ClientServiceImpl;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/clients")
 @RequiredArgsConstructor
 @Validated
 public class ClientController {
     private final ClientServiceImpl clientService;
-
     @GetMapping(path = "")
     public Iterable<ClientDTO> showAllClients() {
         return clientService.showAllClients();
@@ -38,8 +36,8 @@ public class ClientController {
     }
 
     @PostMapping(path = "debts/payments")
-    public PaymentDTO payToClientDebt(@RequestParam("debtId") UUID debtId,
-                                      @RequestParam("pay") @Positive(message = "Payment amount must be than 0") BigDecimal value) {
-        return MapStructMapper.INSTANCE.paymentToPaymentDTO(clientService.addPayToClientDebt(debtId, value));
+    public PaymentDTO addPaymentToDebt(@RequestParam("debtId") UUID debtId,
+                                       @RequestParam("pay") @Positive(message = "Payment amount must be than 0") BigDecimal value) {
+        return MapStructMapper.INSTANCE.paymentToPaymentDTO(clientService.addPaymentToDebt(debtId, value));
     }
 }

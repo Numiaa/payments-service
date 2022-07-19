@@ -1,8 +1,6 @@
 package ru.ivanov.paymentsservice.service;
 
 import ru.ivanov.paymentsservice.dto.ClientDTO;
-import ru.ivanov.paymentsservice.dto.DebtDTO;
-import ru.ivanov.paymentsservice.dto.PaymentDTO;
 import ru.ivanov.paymentsservice.model.Client;
 import ru.ivanov.paymentsservice.model.Debt;
 import ru.ivanov.paymentsservice.model.Payment;
@@ -18,5 +16,5 @@ public interface ClientService {
 
     Debt addDebtToClient(UUID clientId, BigDecimal value);
 
-    Payment addPayToClientDebt(UUID debtId, BigDecimal value);
+    Payment addPaymentToDebt(UUID debtId, BigDecimal value);
 }
