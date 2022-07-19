@@ -24,7 +24,6 @@ public class Debt {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
     private UUID id;
     @Column(name = "value")
-    @Min(value = 1, message = "Debt amount must be more than 0")
     private BigDecimal value;
     @ManyToOne
     @JoinColumn(name = "client_id")

@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -24,7 +25,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
     private UUID id;
     @Column(name = "name")
-    @Size(min = 3, message = "Name length must be more than 2")
+    @Length(min = 1, max = 128)
     private String name;
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     @Cascade(CascadeType.ALL)

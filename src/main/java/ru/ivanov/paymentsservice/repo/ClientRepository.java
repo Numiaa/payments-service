@@ -10,8 +10,4 @@ import java.util.UUID;
 
 @Repository
 public interface ClientRepository extends CrudRepository<Client, UUID> {
-
-    @Transactional
-    @Query("select c from Client c where c.id=?1")
-    Client findClientById(UUID uuid);
 }

@@ -11,6 +11,7 @@ import ru.ivanov.paymentsservice.dto.PaymentDTO;
 import ru.ivanov.paymentsservice.repo.ClientRepository;
 import ru.ivanov.paymentsservice.repo.DebtRepository;
 import ru.ivanov.paymentsservice.repo.PaymentRepository;
+import ru.ivanov.paymentsservice.service.ClientService;
 import ru.ivanov.paymentsservice.service.ClientServiceImpl;
 
 import java.math.BigDecimal;
@@ -20,34 +21,25 @@ import java.util.UUID;
 public class ClientServiceTest {
 
     @Autowired
-    private ClientServiceImpl clientService;
+    private ClientService clientService;
+    @Autowired
+    private ClientRepository clientRepository;
+    @Autowired
+    private DebtRepository debtRepository;
+    @Autowired
+    private PaymentRepository paymentRepository;
+
 
     @Test
     public void addClientTest() {
-        ClientDTO clientDTO = clientService.addClient("TestName");
-        Assertions.assertNotNull(clientDTO);
-        Assertions.assertEquals("TestName", clientDTO.getName());
     }
 
     @Test
     public void addDebtToClientTest() {
-        ClientDTO clientDTO = clientService.addClient("testDebtToClient");
-        UUID clientId = clientDTO.getId();
-        BigDecimal value = BigDecimal.valueOf(500.00);
-        DebtDTO debtDTO = clientService.addDebtToClient(clientId, value);
-        Assertions.assertNotNull(debtDTO);
-        Assertions.assertEquals(clientDTO.getId(), debtDTO.getClientId());
+
     }
 
     @Test
     public void addPayToClientDebt() {
-        ClientDTO clientDTO = clientService.addClient("testPayToClientDebt");
-        UUID clientId = clientDTO.getId();
-        BigDecimal value = BigDecimal.valueOf(500.00);
-        DebtDTO debtDTO = clientService.addDebtToClient(clientId, value);
-        UUID debtId = debtDTO.getId();
-        PaymentDTO paymentDTO = clientService.addPayToClientDebt(debtId, value);
-        Assertions.assertNotNull(paymentDTO);
-        Assertions.assertEquals(debtDTO.getId(), paymentDTO.getDebtId());
     }
 }

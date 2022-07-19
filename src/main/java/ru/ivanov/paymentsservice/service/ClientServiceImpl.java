@@ -5,8 +5,6 @@ import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ivanov.paymentsservice.dto.ClientDTO;
-import ru.ivanov.paymentsservice.dto.DebtDTO;
-import ru.ivanov.paymentsservice.dto.PaymentDTO;
 import ru.ivanov.paymentsservice.dto.mapper.MapStructMapper;
 import ru.ivanov.paymentsservice.model.Client;
 import ru.ivanov.paymentsservice.model.Debt;
@@ -50,16 +48,16 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     @Transactional
-    public ClientDTO addClient(String name) {
+    public Client addClient(String name) {
         Client client = new Client();
         client.setName(name);
         clientRepository.save(client);
-        return MapStructMapper.INSTANCE.clientToClientDTO(client);
+        return client;
     }
 
     @Override
     @Transactional
-    public DebtDTO addDebtToClient(UUID clientId, BigDecimal value) {
+    public Debt addDebtToClient(UUID clientId, BigDecimal value) {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new DataRetrievalFailureException("Client with id:" + clientId + " not found"));
         Debt debt = new Debt();
@@ -67,12 +65,12 @@ public class ClientServiceImpl implements ClientService {
         debt.setClient(client);
         client.getDebts().add(debt);
         debtRepository.save(debt);
-        return MapStructMapper.INSTANCE.debtToDebtDTO(debt);
+        return debt;
     }
 
     @Override
     @Transactional
-    public PaymentDTO addPayToClientDebt(UUID debtId, BigDecimal value) {
+    public Payment addPayToClientDebt(UUID debtId, BigDecimal value) {
         Debt debt = debtRepository.findById(debtId).orElseThrow(() ->
                 new DataRetrievalFailureException("Debt with id:" + debtId + " not found"));
         BigDecimal factPayments = debt.getPayments().stream()
@@ -87,6 +85,6 @@ public class ClientServiceImpl implements ClientService {
         payment.setValue(value);
         paymentRepository.save(payment);
         debt.getPayments().add(payment);
-        return MapStructMapper.INSTANCE.paymentToPaymentDTO(payment);
+        return payment;
     }
 }
