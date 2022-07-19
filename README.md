@@ -10,3 +10,5 @@ ENDPOINTS: localhost:8080/clients
 - GET: / - выгружает всех клиентов
 ![Screenshot 2022-07-19 at 17 49 24](https://user-images.githubusercontent.com/95632773/179743161-ec7e902d-f931-4b99-9a3b-6b2ae5896db9.png)
 
+Запуск .jar файла.
+java -jar /path_to_jar_file/payments-service-0.0.1-SNAPSHOT.jar
